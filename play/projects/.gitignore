@@ -1,0 +1,15 @@
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+.history
+.cache
+.lib/
+
+.bash_history
+.g8/
+.sbt/
+.ivy2/
+
