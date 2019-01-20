@@ -2,9 +2,7 @@ version: "3"
 
 services:
   sbt:
-    build:
-      context: .
-    ports:
-      - "9000:9000"
+    image: hseeberger/scala-sbt:8u151-2.12.4-1.1.0
     volumes:
       - ./projects:/root
+    tty: true
