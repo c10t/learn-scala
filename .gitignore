@@ -1,2 +1,10 @@
 .DS_Store
+
 .scala_history
+.bash_history
+
+.ivy2/
+.sbt/
+target/
+project/boot/
+project/plugins/project/
