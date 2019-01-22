@@ -41,9 +41,9 @@ object List {
   }
 
   // Exercise 3.5
-  def dropWhile[A](ds: List[A], f: A => Boolean): List[A] = ds match {
-    case Nil => Nil
-    case Cons(x, xs) =>  if (f(x)) dropWhile(xs, f) else ds
+  def dropWhile[A](ds: List[A])(f: A => Boolean): List[A] = ds match {
+    case Cons(x, xs) if f(x) => dropWhile(xs)(f)
+    case _ => ds
   }
 
   def append[A](a1: List[A], a2: List[A]): List[A] = a1 match {
