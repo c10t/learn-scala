@@ -19,7 +19,7 @@ object MyModule {
     go(n, 0, 1)
   }
 
-  def findFirst[A](as: Array[A], p => Boolean): Int = {
+  def findFirst[A](as: Array[A], p: A => Boolean): Int = {
     @annotation.tailrec
     def loop(n: Int): Int =
       if (n >= as.length) -1
@@ -57,9 +57,11 @@ object MyModule {
     msg.format(name, n, f(n))
   }
 
+  /*
   def main(args: Array[String]): Unit = {
     println(formatResult("absolute value", -42, abs))
     println(formatResult("factorial", 7, factorial))
     println(formatResult("fibonacci number", 6, fibb))
   }
+  */
 }
