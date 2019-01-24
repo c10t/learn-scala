@@ -18,6 +18,34 @@ object List {
     case Cons(x, xs) => x * product(xs)
   }
 
+  def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B =
+    as match {
+      case Nil => z
+      case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+    }
+  
+  def sum2(ns: List[Int]) = foldRight(ns, 0)((x, y) => x + y)
+
+  def product2(ns: List[Double]) = foldRight(ns, 1.0)(_ * _)
+
+  // Exercise 3.9
+  def length[A](as: List[A]): Int = foldRight(as, 0)((x, y) => 1 + y)
+
+  // Exercise 3.10
+  @annotation.tailrec
+  def foldLeft[A, B](as: List[A], z: B)(f: (B, A) => B): B = as match {
+    case Nil => z
+    case Cons(head, tail) => foldLeft(tail, f(z, head))(f)
+  }
+
+  // Exercise 3.11
+  def sumEx311(ns: List[Int]): Int = foldLeft(ns, 0)(_ + _)
+  def productEx311(ns: List[Double]): Double = foldLeft(ns, 1.0)(_ * _)
+  def lengthEx311[A](as: List[A]): Int = foldLeft(as, 0)((acc, head) => acc + 1)
+
+  // Exercise 3.12
+  def reverse[A](ns: List[A]): List[A] = foldLeft(ns, List[A]())((tail, head) => Cons(head, tail))
+
   def apply[A](as: A*): List[A] = if (as.isEmpty) Nil else Cons(as.head, apply(as.tail: _*))
 
   // Exercise 3.2

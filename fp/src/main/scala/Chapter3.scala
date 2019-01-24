@@ -12,5 +12,7 @@ object Chapter3 extends App {
     }
   }
 
-  println("Exercise 3.1: %d".format(ex31()))
+  def ex39(): Int = length(List(1, 2, 3, 4))
+
+  println("Exercise 3.9: %d".format(ex39()))
 }
