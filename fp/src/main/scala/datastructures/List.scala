@@ -46,6 +46,15 @@ object List {
   // Exercise 3.12
   def reverse[A](ns: List[A]): List[A] = foldLeft(ns, List[A]())((tail, head) => Cons(head, tail))
 
+  def foldRightViaFL1[A, B](ns: List[A], z: B)(f: (A, B) => B): B =
+    foldLeft(reverse(ns), z)((b, a) => f(a, b))
+
+  def foldRightViaFL2[A, B](ns: List[A], z: B)(f: (A, B) => B): B =
+    foldLeft(ns, (b: B) => b)((g, a) => b => g(f(a, b)))(z)
+
+  def foldLeftViaFR[A, B](ns, List[A], z: B)(f: (B, A) => B): B =
+    foldRight(ns, (b: B) => b)((a, g) => b => g(f(b, a)))(z)
+
   def apply[A](as: A*): List[A] = if (as.isEmpty) Nil else Cons(as.head, apply(as.tail: _*))
 
   // Exercise 3.2
