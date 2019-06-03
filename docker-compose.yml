@@ -3,6 +3,9 @@ version: "3"
 services:
   sbt:
     image: hseeberger/scala-sbt:8u151-2.12.4-1.1.0
+    ports:
+      - '8998:8080'
     volumes:
-      - ./fp:/root
+      - ./fp:/code/fp
+      - ./mogfin:/code/mogfin
     tty: true
