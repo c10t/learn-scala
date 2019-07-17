@@ -7,8 +7,9 @@ import play.api.mvc.Action
 import play.api.mvc.AnyContent
 import play.api.mvc.ControllerComponents
 import play.api.mvc.Request
+import play.api.libs.json.Json
 
-import services.HelloService
+// import services.HelloService
 
 @Singleton
 class HelloController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
@@ -16,9 +17,10 @@ class HelloController @Inject()(cc: ControllerComponents) extends AbstractContro
   def get(name: Option[String]) =
     Action { implicit request: Request[AnyContent] =>
       Ok {
-        name
-          .map(s => s"Hello, $s!")
-          .getOrElse("""Please give a name as a query parameter named "name".""")
+        // name
+        //   .map(s => s"Hello, $s!")
+        //   .getOrElse("""Please give a name as a query parameter named "name".""")
+        Json.toJson(HelloResponse(s"Hello, ${name.getOrElse("NONAME")}!!!", 200))
       }
     }
 }
